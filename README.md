@@ -10,6 +10,8 @@ npm run dev
 yarn dev
 ```
 
+Setup for [typescript, Jest and React Testing Libray](https://dev.to/maciekgrzybek/setup-next-js-with-typescript-jest-and-react-testing-library-28g5)
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
