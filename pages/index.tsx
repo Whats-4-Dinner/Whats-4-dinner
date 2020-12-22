@@ -5,25 +5,26 @@ import {useState, useEffect} from 'react'
 
 const dummyQuestions = [
   {
-    'question': 'Say Yes',
+    'question': 'QUESTION Yes',
     'response': ['yes', 'no', 'maybe', '1st']
   },
   {
-    'question': 'Say No',
+    'question': 'QUESTION No',
     'response': ['yes', 'no', 'maybe', '2nd']
   },
   {
-    'question': 'Say maybe',
+    'question': 'QUESTION maybe',
     'response': ['yes', 'no', 'maybe','3rd']
   },
 ]
 
+
 const Home : React.FC= () => {
 
-  const [qNum, setQNum] = useState(0)
-  const [display, setDisplay] = useState([])
-  const [options, setOptions] = useState([])
-  const [isResponse, setIsResponse] = useState(false)
+  const [qNum, setQNum] = useState<number>(0)
+  const [display, setDisplay] = useState<string[]>([])
+  const [options, setOptions] = useState<string[]>([])
+  const [isResponse, setIsResponse] = useState<boolean>(false)
 
   //The goal is to display one question at a time
   //also display all the possible responses 
@@ -45,7 +46,6 @@ const Home : React.FC= () => {
       const response = evt.target.value
       setDisplay([...display, response])
       setIsResponse(true)
-    
   }
 
   useEffect(() => {
@@ -61,12 +61,15 @@ const Home : React.FC= () => {
 
       <Header />
 
-        <button onClick={addQuestion}>Start</button>
+      <div className='container'>
+      <button onClick={addQuestion}>Start</button>
         <br/>
         {display.map(curr => (<div key={curr}> {curr}</div>))}
         Possible Responses: 
         <br/>
         {options.map(curr => (<button onClick={addResponse} value={curr} key={curr}>{curr}</button>))}
+      </div>
+       
       <Footer />
     </div>
   )
