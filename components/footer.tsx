@@ -1,6 +1,6 @@
 const Footer : React.FC= () => {
   return (
-    <div>
+    <div className='footer'>
       This is a Footer
     </div>
   )
