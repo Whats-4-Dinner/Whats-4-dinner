@@ -64,7 +64,6 @@ const Home : React.FC= () => {
       <button onClick={addQuestion}>Start</button>
         <div className='chat'>
           <div className="chat-title">
-            <p>Alexa</p>
             <p>Bot</p>
               <figure className="avatar"></figure>
           </div>

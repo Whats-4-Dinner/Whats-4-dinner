@@ -7,9 +7,14 @@ body {
 }
 
 body {
-  height: 100%;
+  max-width: 100%;
+  height: auto;
   padding-top: 90px;
   padding-bottom: 50px;
+  background-image: url('../public/ella-olsson-4dQiaWKiL-Y-unsplash.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 a {
@@ -50,8 +55,8 @@ a {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 300px;
-  height: 80vh;
+  width: 330px;
+  height: 85vh;
   max-height: 500px;
   overflow: hidden;
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
@@ -66,23 +71,17 @@ a {
   background: rgba(0, 0, 0, 0.2);
   color: #fff;
   text-align: left;
-  padding: 10px 10px 10px 55px;
-}
-
-.chat-title p {
-  margin: 0;
-  padding: 0;
-  letter-spacing: 1px;
+  padding: 4px 10px 4px 50px;
 }
 
 .avatar {
   position: absolute;
-  top: 12px;
+  top: 14px;
   left: 12px;
   border-radius: 30px;
   background-color: #e12323;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   margin: 0;
   padding: 0;
 }
