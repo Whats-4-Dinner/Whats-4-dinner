@@ -1,6 +1,6 @@
 :root {
   --red: #e12323;
-  --gray: rgba(0, 0, 0, 0.2);
+  --gray: rgba(0, 0, 0, 0.3);
 }
 
 html,
@@ -100,6 +100,8 @@ a {
   flex: 1 1 auto;
   padding: 15px 0;
   overflow: scroll;
+  background-color: white;
+  opacity: 0.9;
 }
 
 .message {

@@ -38,9 +38,10 @@ const Home : React.FC= () => {
   }
 
   function addResponse (evt){
-      const response = evt.target.value
-      setDisplay([...display, response])
-      setIsResponse(true)
+    evt.preventDefault();
+    const response = evt.target.value
+    setDisplay([...display, response])
+    setIsResponse(true)
   }
 
   useEffect(() => {
