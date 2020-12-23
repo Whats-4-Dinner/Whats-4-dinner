@@ -18,7 +18,6 @@ const dummyQuestions = [
   },
 ]
 
-
 const Home : React.FC= () => {
 
   const [qNum, setQNum] = useState<number>(0)
@@ -63,11 +62,19 @@ const Home : React.FC= () => {
 
       <div className='container'>
       <button onClick={addQuestion}>Start</button>
-        <br/>
-        {display.map(curr => (<div key={curr}> {curr}</div>))}
-        Possible Responses: 
-        <br/>
-        {options.map(curr => (<button onClick={addResponse} value={curr} key={curr}>{curr}</button>))}
+        <div className='chat'>
+          <div className="chat-title">
+            <p>Bot</p>
+              <figure className="avatar"></figure>
+          </div>
+
+          <div className='messages'>
+            {display.map(curr => (<div key={curr}> {curr}</div>))}
+          </div>
+          <div className='message-options'>
+            {options.map(curr => (<button onClick={addResponse} value={curr} key={curr}>{curr}</button>))}
+          </div>
+        </div>
       </div>
        
       <Footer />
@@ -76,3 +83,5 @@ const Home : React.FC= () => {
 }
 
 export default Home
+
+
