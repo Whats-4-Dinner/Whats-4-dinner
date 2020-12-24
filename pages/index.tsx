@@ -29,7 +29,7 @@ const Home: React.FC = () => {
   const [options, setOptions] = useState<string[]>([]);
   const [isResponse, setIsResponse] = useState<boolean>(false);
 
-  function startQuestions() {
+  function startQuestions() : void {
     clearTimeout()
     const currQ : string = dummyQuestions[0].question
     const currOptions :string[] = dummyQuestions[0].response
@@ -43,10 +43,9 @@ const Home: React.FC = () => {
     setOptions(currOptions);
     setResNum(0);
     setQNum(1);
-
   }
 
-  function addQuestion (){
+  function addQuestion (): void {
     if(qNum < dummyQuestions.length){
       const currQ : string= dummyQuestions[qNum].question
       const currOptions : string[] = dummyQuestions[qNum].response
@@ -63,7 +62,7 @@ const Home: React.FC = () => {
     }
   }
 
-  function addResponse(evt) {
+  function addResponse(evt): void {
     if (qNum > resNum) {
       const response : string = evt.target.value;
 
