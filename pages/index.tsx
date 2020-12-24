@@ -23,6 +23,17 @@ const Home: React.FC = () => {
   const [options, setOptions] = useState<string[]>([]);
   const [isResponse, setIsResponse] = useState<boolean>(false);
 
+  function startQuestions() {
+    clearTimeout()
+    const currQ = dummyQuestions[0].question
+    const currOptions = dummyQuestions[0].response
+    setDisplay([currQ]);
+    setOptions(currOptions);
+    setResNum(0);
+    setQNum(1);
+
+  }
+
   function addQuestion (){
     if(qNum < dummyQuestions.length){
       const currQ = dummyQuestions[qNum].question
@@ -45,7 +56,7 @@ const Home: React.FC = () => {
   }
 
   useEffect(() => {
-    if (isResponse) addQuestion();
+    if (isResponse) setTimeout(() => addQuestion(),1000);
   });
 
   return (
@@ -56,7 +67,7 @@ const Home: React.FC = () => {
       </Head>
 
       <div className='container'>
-      <button onClick={addQuestion}>Start</button>
+      <button onClick={startQuestions}>Start</button>
         <div className='chat'>
           <div className="flex chat-title">
             <div className="avatar"/>
