@@ -41,6 +41,7 @@ const Home: React.FC = () => {
     }
     setDisplay([initalDisplay]);
     setOptions(currOptions);
+    setIsResponse(false);
     setResNum(0);
     setQNum(1);
   }
