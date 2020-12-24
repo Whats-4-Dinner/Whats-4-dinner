@@ -6,15 +6,15 @@ import {useState, useEffect} from 'react'
 const dummyQuestions = [
   {
     'question': 'QUESTION Yes',
-    'response': ['yes', 'no', 'maybe', '1st']
+    'response': ['yes', 'no', '1st']
   },
   {
     'question': 'QUESTION No',
-    'response': ['yes', 'no', 'maybe', '2nd']
+    'response': ['yes', 'no', '2nd']
   },
   {
     'question': 'QUESTION maybe',
-    'response': ['yes', 'no', 'maybe','3rd']
+    'response': ['yes', 'no', '3rd']
   },
 ]
 
@@ -25,10 +25,6 @@ const Home : React.FC= () => {
   const [options, setOptions] = useState<string[]>([])
   const [isResponse, setIsResponse] = useState<boolean>(false)
 
-  //The goal is to display one question at a time
-  //also display all the possible responses 
-
-  
   function addQuestion (){
     if(qNum < dummyQuestions.length){
       const currQ = dummyQuestions[qNum].question
@@ -42,9 +38,10 @@ const Home : React.FC= () => {
   }
 
   function addResponse (evt){
-      const response = evt.target.value
-      setDisplay([...display, response])
-      setIsResponse(true)
+    evt.preventDefault();
+    const response = evt.target.value
+    setDisplay([...display, response])
+    setIsResponse(true)
   }
 
   useEffect(() => {
@@ -63,14 +60,20 @@ const Home : React.FC= () => {
       <div className='container'>
       <button onClick={addQuestion}>Start</button>
         <div className='chat'>
-          <div className="chat-title">
+          <div className="flex chat-title">
+            <div className="avatar"/>
             <p>Bot</p>
-              <figure className="avatar"></figure>
           </div>
 
           <div className='messages'>
-            {display.map(curr => (<div key={curr}> {curr}</div>))}
+            {display.map(curr => (
+              <div className='flex' key={curr}>
+                <figure className="avatar"/>
+                <p className='message'>{curr}</p>
+              </div>
+              ))}
           </div>
+
           <div className='message-options'>
             {options.map(curr => (<button onClick={addResponse} value={curr} key={curr}>{curr}</button>))}
           </div>
