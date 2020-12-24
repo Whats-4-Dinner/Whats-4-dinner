@@ -1,6 +1,7 @@
 :root {
   --red: #e12323;
   --gray: rgba(0, 0, 0, 0.3);
+  --blue: rgb(0, 0, 255);
 }
 
 html,
@@ -88,12 +89,20 @@ a {
   padding: 5px 0px;
 }
 
-.avatar {
+/* All figures with className which starts with avatar */
+figure[class ^= "avatar"]{
   border-radius: 30px;
-  background-color: var(--red);
   width: 30px;
   height: 30px;
   margin: 8px 8px 8px 16px;
+}
+
+.avatar-bot {
+  background-color: var(--red);
+}
+
+.avatar-user {
+  background-color: var(--blue);
 }
 
 .messages {
