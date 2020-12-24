@@ -93,7 +93,7 @@ const Home: React.FC = () => {
       <button onClick={startQuestions}>Start</button>
         <div className='chat'>
           <div className="flex chat-title">
-            <div className="avatar"/>
+            <div className="avatar-bot"/>
             <p>Bot</p>
           </div>
 
