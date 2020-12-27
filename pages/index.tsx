@@ -3,16 +3,16 @@ import { useState, useEffect } from 'react';
 
 const dummyQuestions = [
   {
-    question: 'QUESTION Yes',
-    response: ['yes', 'no', 'maybe', '1st'],
+    'question': 'QUESTION Yes',
+    'response': ['yes', 'no', '1st']
   },
   {
-    question: 'QUESTION No',
-    response: ['yes', 'no', 'maybe', '2nd'],
+    'question': 'QUESTION No',
+    'response': ['yes', 'no', '2nd']
   },
   {
-    question: 'QUESTION maybe',
-    response: ['yes', 'no', 'maybe', '3rd'],
+    'question': 'QUESTION maybe',
+    'response': ['yes', 'no', '3rd']
   },
 ];
 
@@ -23,20 +23,19 @@ const Home: React.FC = () => {
   const [options, setOptions] = useState<string[]>([]);
   const [isResponse, setIsResponse] = useState<boolean>(false);
 
-  //The goal is to display one question at a time
-  //also display all the possible responses
 
-  function addQuestion() {
-    if (qNum < dummyQuestions.length) {
-      const currQ = dummyQuestions[qNum].question;
-      const currOptions = dummyQuestions[qNum].response;
-
+  function addQuestion (){
+    if(qNum < dummyQuestions.length){
+      const currQ = dummyQuestions[qNum].question
+      const currOptions = dummyQuestions[qNum].response
+      
       setIsResponse(false);
       setDisplay([...display, currQ]);
       setOptions(currOptions);
       setQNum(qNum + 1);
     }
   }
+
 
   function addResponse(evt) {
     if (qNum > resNum) {
@@ -58,6 +57,7 @@ const Home: React.FC = () => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
+
       <div className="container">
         <button onClick={addQuestion}>Start</button>
         <div className="chat">
@@ -70,6 +70,7 @@ const Home: React.FC = () => {
             {display.map((curr) => (
               <div key={curr}> {curr}</div>
             ))}
+
           </div>
 
           {qNum === 0 || qNum > resNum ? (
