@@ -1,0 +1,22 @@
+[
+    {
+      "question": "Do you have a dietary restriction?",
+      "response": ["yes", "no"]
+    },
+    {
+      "question": "Are you are on a budget Are you are on a budget Are you are on a budget",
+      "response": ["yes", "no", "2nd"]
+    },
+    {
+      "question": "QUESTION maybe",
+      "response": ["yes", "no", "3rd"]
+    },
+    {
+      "question": "QUESTION No",
+      "response": ["yes", "no", "4th"]
+    },
+    {
+      "question": "QUESTION maybe",
+      "response": ["yes", "no", "5rd"]
+    }
+]
