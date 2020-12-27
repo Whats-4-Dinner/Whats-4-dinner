@@ -69,7 +69,7 @@ const Home: React.FC = () => {
       setResNum(resNum + 1);
     }
   }
-
+  
   function scrollToBottom() {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
   }
@@ -90,9 +90,8 @@ const Home: React.FC = () => {
       <button onClick={startQuestions}>Start</button>
         <div className='chat'>
           <div className="flex chat-title">
-            <div className="avatar-bot"/>
+            <figure className="avatar-bot"/>
             <p>Bot</p>
-            <figure className="avatar"></figure>
           </div>
 
 
