@@ -102,7 +102,8 @@ const Home: React.FC = () => {
           <div className='messages'>
             {display.map(message => (
               <div className='flex' key={`${message.user}:${message.id}`}>
-                <figure className="avatar"/>
+  
+                <figure className={`avatar-${message.user}`}/>
                 <p className='message'>{message.text}</p>
               </div>
               ))}
