@@ -1,6 +1,7 @@
 :root {
   --red: #e12323;
   --gray: rgba(0, 0, 0, 0.3);
+  --blue: rgb(0, 0, 255);
 }
 
 html,
@@ -88,12 +89,34 @@ a {
   padding: 5px 0px;
 }
 
-.avatar {
+.flex-user {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.flex-bot {
+  display: flex;
+  align-items: center;
+}
+
+/* All figures with className which starts with avatar */
+figure,
+div[class^='avatar'] {
   border-radius: 30px;
-  background-color: var(--red);
   width: 30px;
   height: 30px;
   margin: 8px 8px 8px 16px;
+}
+
+.avatar-bot {
+  background-color: var(--red);
+}
+
+.avatar-user {
+  background-color: var(--blue);
+  order: 2;
+  align-self: flex-end;
 }
 
 .messages {
@@ -104,9 +127,16 @@ a {
   opacity: 0.9;
 }
 
-.message {
+.message-bot {
   padding: 6px 10px 7px;
   border-radius: 10px 10px 10px 0;
+  background: var(--gray);
+  line-height: 1.4;
+}
+
+.message-user {
+  padding: 6px 10px 7px;
+  border-radius: 10px 10px 0 10px;
   background: var(--gray);
   line-height: 1.4;
 }
@@ -116,6 +146,7 @@ a {
   background: var(--gray);
   padding: 15px;
   justify-content: space-around;
+  min-height: 60px;
 }
 
 .message-options button {

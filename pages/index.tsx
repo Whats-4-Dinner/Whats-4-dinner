@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
 
 const dummyQuestions = [
   {
@@ -14,39 +15,87 @@ const dummyQuestions = [
     'question': 'QUESTION maybe',
     'response': ['yes', 'no', '3rd']
   },
+  {
+    'question': 'QUESTION No',
+    'response': ['yes', 'no', '4th']
+  },
+  {
+    'question': 'QUESTION maybe',
+    'response': ['yes', 'no', '5rd']
+  },
 ];
+
+interface Display {
+  text : string;
+  id : number;
+  user : 'bot' | 'user'
+}
 
 const Home: React.FC = () => {
   const [qNum, setQNum] = useState<number>(0);
   const [resNum, setResNum] = useState<number>(0);
-  const [display, setDisplay] = useState<string[]>([]);
+  const [display, setDisplay] = useState<Display[]>([]);
   const [options, setOptions] = useState<string[]>([]);
   const [isResponse, setIsResponse] = useState<boolean>(false);
+  const messagesEndRef = useRef(null)
 
-  function addQuestion (){
+  function startQuestions() : void {
+    clearTimeout()
+    const currQ : string = dummyQuestions[0].question
+    const currOptions :string[] = dummyQuestions[0].response
+
+    const initalDisplay : Display = {
+      text: currQ,
+      id: 0,
+      user: 'bot'
+    }
+    setDisplay([initalDisplay]);
+    setOptions(currOptions);
+    setIsResponse(false);
+    setResNum(0);
+    setQNum(1);
+  }
+
+  function addQuestion (): void {
     if(qNum < dummyQuestions.length){
-      const currQ = dummyQuestions[qNum].question
-      const currOptions = dummyQuestions[qNum].response
+      const currQ : string= dummyQuestions[qNum].question
+      const currOptions : string[] = dummyQuestions[qNum].response
     
+      const nextQuestion : Display = {
+        text: currQ,
+        id: qNum,
+        user: 'bot'
+      }
       setIsResponse(false);
-      setDisplay([...display, currQ]);
+      setDisplay([...display, nextQuestion]);
       setOptions(currOptions);
       setQNum(qNum + 1);
     }
   }
 
-  function addResponse(evt) {
+  function addResponse(evt): void {
     if (qNum > resNum) {
-      const response = evt.target.value;
-      setDisplay([...display, response]);
+      const response : string = evt.target.value;
+
+      const userResponse : Display = {
+        text: response,
+        id: resNum,
+        user: 'user'
+      }
+      setDisplay([...display, userResponse]);
       setIsResponse(true);
       setResNum(resNum + 1);
     }
   }
 
+  function scrollToBottom() {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+  }
+
   useEffect(() => {
-    if (isResponse) addQuestion();
-  });
+    if (isResponse) setTimeout(() => addQuestion(),1000);
+    scrollToBottom()
+  }, [display]);
 
   return (
     <div>
@@ -56,33 +105,32 @@ const Home: React.FC = () => {
       </Head>
 
       <div className='container'>
-      <button onClick={addQuestion}>Start</button>
+      <button onClick={startQuestions}>Start</button>
         <div className='chat'>
           <div className="flex chat-title">
-            <div className="avatar"/>
+            <div className="avatar-bot"/>
             <p>Bot</p>
+            <figure className="avatar"></figure>
           </div>
+
 
           <div className='messages'>
-            {display.map(curr => (
-              <div className='flex' key={curr}>
-                <figure className="avatar"/>
-                <p className='message'>{curr}</p>
+            {display.map(message => (
+              <div className={`flex-${message.user}`} key={`${message.user}:${message.id}`}>
+                <figure className={`avatar-${message.user}`}/>
+                <p className={`message-${message.user}`}>{message.text}</p>
               </div>
               ))}
+            <div ref={messagesEndRef} />
           </div>
-
-          {qNum === 0 || qNum > resNum ? (
-            <div className="message-options">
-              {options.map((curr) => (
-                <button onClick={addResponse} value={curr} key={curr}>
-                  {curr}
-                </button>
-              ))}
-            </div>
-          ) : (
-            ''
-          )}
+         
+          <div className="message-options">
+            {qNum === 0 || qNum > resNum ? options.map((choice) => (
+              <button onClick={addResponse} value={choice} key={choice}>
+                {choice}
+              </button>
+            )) : ("")}
+          </div>
         </div>
       </div>
     </div>
