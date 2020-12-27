@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
 
 const dummyQuestions = [
   {
@@ -36,6 +37,7 @@ const Home: React.FC = () => {
   const [display, setDisplay] = useState<Display[]>([]);
   const [options, setOptions] = useState<string[]>([]);
   const [isResponse, setIsResponse] = useState<boolean>(false);
+  const messagesEndRef = useRef(null)
 
   function startQuestions() : void {
     clearTimeout()
@@ -86,9 +88,14 @@ const Home: React.FC = () => {
     }
   }
 
+  function scrollToBottom() {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+  }
+
   useEffect(() => {
     if (isResponse) setTimeout(() => addQuestion(),1000);
-  });
+    scrollToBottom()
+  }, [display]);
 
   return (
     <div>
@@ -96,11 +103,11 @@ const Home: React.FC = () => {
         <title>Whats4Dinner</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
+
       <div className='container'>
       <button onClick={startQuestions}>Start</button>
         <div className='chat'>
           <div className="flex chat-title">
-
             <div className="avatar-bot"/>
             <p>Bot</p>
             <figure className="avatar"></figure>
@@ -110,23 +117,20 @@ const Home: React.FC = () => {
           <div className='messages'>
             {display.map(message => (
               <div className={`flex-${message.user}`} key={`${message.user}:${message.id}`}>
-  
                 <figure className={`avatar-${message.user}`}/>
                 <p className={`message-${message.user}`}>{message.text}</p>
               </div>
               ))}
+            <div ref={messagesEndRef} />
           </div>
-          {qNum === 0 || qNum > resNum ? (
-            <div className="message-options">
-              {options.map((choice) => (
-                <button onClick={addResponse} value={choice} key={choice}>
-                  {choice}
-                </button>
-              ))}
-            </div>
-          ) : (
-            ''
-          )}
+         
+          <div className="message-options">
+            {qNum === 0 || qNum > resNum ? options.map((choice) => (
+              <button onClick={addResponse} value={choice} key={choice}>
+                {choice}
+              </button>
+            )) : ("")}
+          </div>
         </div>
       </div>
     </div>

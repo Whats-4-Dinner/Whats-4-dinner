@@ -101,7 +101,8 @@ a {
 }
 
 /* All figures with className which starts with avatar */
-figure, div[class ^= "avatar"]{
+figure,
+div[class^='avatar'] {
   border-radius: 30px;
   width: 30px;
   height: 30px;
@@ -114,7 +115,7 @@ figure, div[class ^= "avatar"]{
 
 .avatar-user {
   background-color: var(--blue);
-  order:2;
+  order: 2;
   align-self: flex-end;
 }
 
@@ -145,6 +146,7 @@ figure, div[class ^= "avatar"]{
   background: var(--gray);
   padding: 15px;
   justify-content: space-around;
+  min-height: 60px;
 }
 
 .message-options button {
