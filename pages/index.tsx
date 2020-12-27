@@ -1,29 +1,7 @@
 import Head from 'next/head';
 import { useState, useEffect, useRef } from 'react';
-
-
-const dummyQuestions = [
-  {
-    'question': 'QUESTION Yes',
-    'response': ['yes', 'no', '1st']
-  },
-  {
-    'question': 'QUESTION No',
-    'response': ['yes', 'no', '2nd']
-  },
-  {
-    'question': 'QUESTION maybe',
-    'response': ['yes', 'no', '3rd']
-  },
-  {
-    'question': 'QUESTION No',
-    'response': ['yes', 'no', '4th']
-  },
-  {
-    'question': 'QUESTION maybe',
-    'response': ['yes', 'no', '5rd']
-  },
-];
+import dummyQuestions from './questions.json';
+require('../secrets')
 
 interface Display {
   text : string;
@@ -54,6 +32,7 @@ const Home: React.FC = () => {
     setIsResponse(false);
     setResNum(0);
     setQNum(1);
+    api()
   }
 
   function addQuestion (): void {
@@ -86,6 +65,13 @@ const Home: React.FC = () => {
       setIsResponse(true);
       setResNum(resNum + 1);
     }
+  }
+
+  async function api() {
+    console.log(process.env.SPOONACULAR_API_KEY)
+    const response = await fetch(`https://api.spoonacular.com/recipes/716429/information?apiKey=${process.env.SPOONACULAR_API_KEY}`)
+    await console.log(response)
+    return response
   }
 
   function scrollToBottom() {
