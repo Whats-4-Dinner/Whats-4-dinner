@@ -70,8 +70,8 @@ const Home: React.FC = () => {
   async function api() {
     console.log(process.env.SPOONACULAR_API_KEY)
     const response = await fetch(`https://api.spoonacular.com/recipes/716429/information?apiKey=${process.env.SPOONACULAR_API_KEY}`)
-    await console.log(response)
-    return response
+    await console.log(response, response.body)
+    // return response
   }
 
   function scrollToBottom() {
@@ -94,9 +94,8 @@ const Home: React.FC = () => {
       <button onClick={startQuestions}>Start</button>
         <div className='chat'>
           <div className="flex chat-title">
-            <div className="avatar-bot"/>
+            <figure className="avatar-bot"/>
             <p>Bot</p>
-            <figure className="avatar"></figure>
           </div>
 
 

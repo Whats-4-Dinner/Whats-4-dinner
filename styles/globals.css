@@ -86,27 +86,29 @@ a {
   background: var(--gray);
   color: #fff;
   text-align: left;
-  padding: 5px 0px;
+  padding: 12px 10px;
 }
 
 .flex-user {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  padding: 4px 0;
 }
 
 .flex-bot {
   display: flex;
   align-items: center;
+  padding: 4px 0;
 }
 
 /* All figures with className which starts with avatar */
 figure,
 div[class^='avatar'] {
   border-radius: 30px;
-  width: 30px;
+  min-width: 30px;
   height: 30px;
-  margin: 8px 8px 8px 16px;
+  margin: 0 8px;
 }
 
 .avatar-bot {
@@ -121,7 +123,7 @@ div[class^='avatar'] {
 
 .messages {
   flex: 1 1 auto;
-  padding: 15px 0;
+  padding: 10px;
   overflow: scroll;
   background-color: white;
   opacity: 0.9;
