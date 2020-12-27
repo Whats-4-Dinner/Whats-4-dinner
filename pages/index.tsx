@@ -41,6 +41,7 @@ const Home: React.FC = () => {
     }
     setDisplay([initalDisplay]);
     setOptions(currOptions);
+    setIsResponse(false);
     setResNum(0);
     setQNum(1);
   }
@@ -92,8 +93,8 @@ const Home: React.FC = () => {
       <button onClick={startQuestions}>Start</button>
         <div className='chat'>
           <div className="flex chat-title">
-            <div className="avatar"/>
 
+            <div className="avatar-bot"/>
             <p>Bot</p>
             <figure className="avatar"></figure>
           </div>

@@ -90,7 +90,7 @@ a {
 }
 
 /* All figures with className which starts with avatar */
-figure[class ^= "avatar"]{
+figure, div[class ^= "avatar"]{
   border-radius: 30px;
   width: 30px;
   height: 30px;
