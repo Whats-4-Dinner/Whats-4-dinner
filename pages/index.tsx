@@ -23,6 +23,7 @@ const Home: React.FC = () => {
   const [options, setOptions] = useState<string[]>([]);
   const [isResponse, setIsResponse] = useState<boolean>(false);
 
+
   function startQuestions() {
     clearTimeout()
     const currQ = dummyQuestions[0].question
@@ -33,12 +34,11 @@ const Home: React.FC = () => {
     setQNum(1);
 
   }
-
   function addQuestion (){
     if(qNum < dummyQuestions.length){
       const currQ = dummyQuestions[qNum].question
       const currOptions = dummyQuestions[qNum].response
-    
+      
       setIsResponse(false);
       setDisplay([...display, currQ]);
       setOptions(currOptions);
@@ -71,18 +71,16 @@ const Home: React.FC = () => {
         <div className='chat'>
           <div className="flex chat-title">
             <div className="avatar"/>
+
             <p>Bot</p>
+            <figure className="avatar"></figure>
           </div>
 
-          <div className='messages'>
-            {display.map(curr => (
-              <div className='flex' key={curr}>
-                <figure className="avatar"/>
-                <p className='message'>{curr}</p>
-              </div>
-              ))}
+          <div className="messages">
+            {display.map((curr) => (
+              <div key={curr}> {curr}</div>
+            ))}
           </div>
-
           {qNum === 0 || qNum > resNum ? (
             <div className="message-options">
               {options.map((curr) => (
