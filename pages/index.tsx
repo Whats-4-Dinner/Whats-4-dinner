@@ -16,40 +16,62 @@ const dummyQuestions = [
   },
 ];
 
+interface Display {
+  text : string;
+  id : number;
+  user : 'bot' | 'user'
+}
+
 const Home: React.FC = () => {
   const [qNum, setQNum] = useState<number>(0);
   const [resNum, setResNum] = useState<number>(0);
-  const [display, setDisplay] = useState<string[]>([]);
+  const [display, setDisplay] = useState<Display[]>([]);
   const [options, setOptions] = useState<string[]>([]);
   const [isResponse, setIsResponse] = useState<boolean>(false);
 
-
-  function startQuestions() {
+  function startQuestions() : void {
     clearTimeout()
-    const currQ = dummyQuestions[0].question
-    const currOptions = dummyQuestions[0].response
-    setDisplay([currQ]);
+    const currQ : string = dummyQuestions[0].question
+    const currOptions :string[] = dummyQuestions[0].response
+
+    const initalDisplay : Display = {
+      text: currQ,
+      id: 0,
+      user: 'bot'
+    }
+    setDisplay([initalDisplay]);
     setOptions(currOptions);
     setResNum(0);
     setQNum(1);
-
   }
-  function addQuestion (){
+
+  function addQuestion (): void {
     if(qNum < dummyQuestions.length){
-      const currQ = dummyQuestions[qNum].question
-      const currOptions = dummyQuestions[qNum].response
-      
+      const currQ : string= dummyQuestions[qNum].question
+      const currOptions : string[] = dummyQuestions[qNum].response
+    
+      const nextQuestion : Display = {
+        text: currQ,
+        id: qNum,
+        user: 'bot'
+      }
       setIsResponse(false);
-      setDisplay([...display, currQ]);
+      setDisplay([...display, nextQuestion]);
       setOptions(currOptions);
       setQNum(qNum + 1);
     }
   }
 
-  function addResponse(evt) {
+  function addResponse(evt): void {
     if (qNum > resNum) {
-      const response = evt.target.value;
-      setDisplay([...display, response]);
+      const response : string = evt.target.value;
+
+      const userResponse : Display = {
+        text: response,
+        id: resNum,
+        user: 'user'
+      }
+      setDisplay([...display, userResponse]);
       setIsResponse(true);
       setResNum(resNum + 1);
     }
@@ -76,16 +98,20 @@ const Home: React.FC = () => {
             <figure className="avatar"></figure>
           </div>
 
-          <div className="messages">
-            {display.map((curr) => (
-              <div key={curr}> {curr}</div>
-            ))}
+
+          <div className='messages'>
+            {display.map(message => (
+              <div className='flex' key={`${message.user}:${message.id}`}>
+                <figure className="avatar"/>
+                <p className='message'>{message.text}</p>
+              </div>
+              ))}
           </div>
           {qNum === 0 || qNum > resNum ? (
             <div className="message-options">
-              {options.map((curr) => (
-                <button onClick={addResponse} value={curr} key={curr}>
-                  {curr}
+              {options.map((choice) => (
+                <button onClick={addResponse} value={choice} key={choice}>
+                  {choice}
                 </button>
               ))}
             </div>
