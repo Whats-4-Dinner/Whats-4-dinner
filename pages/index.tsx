@@ -14,6 +14,14 @@ const dummyQuestions = [
     'question': 'QUESTION maybe',
     'response': ['yes', 'no', '3rd']
   },
+  {
+    'question': 'QUESTION No',
+    'response': ['yes', 'no', '4th']
+  },
+  {
+    'question': 'QUESTION maybe',
+    'response': ['yes', 'no', '5rd']
+  },
 ];
 
 interface Display {
@@ -88,7 +96,6 @@ const Home: React.FC = () => {
         <title>Whats4Dinner</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-
       <div className='container'>
       <button onClick={startQuestions}>Start</button>
         <div className='chat'>
@@ -99,10 +106,10 @@ const Home: React.FC = () => {
 
           <div className='messages'>
             {display.map(message => (
-              <div className='flex' key={`${message.user}:${message.id}`}>
+              <div className={`flex-${message.user}`} key={`${message.user}:${message.id}`}>
   
                 <figure className={`avatar-${message.user}`}/>
-                <p className='message'>{message.text}</p>
+                <p className={`message-${message.user}`}>{message.text}</p>
               </div>
               ))}
           </div>
