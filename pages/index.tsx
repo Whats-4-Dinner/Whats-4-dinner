@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import { useState, useEffect, useRef } from 'react';
 import dummyQuestions from './questions.json';
-require('../secrets')
+import {fetchRecipes} from './api/spoonacular';
+
 
 interface Display {
   text : string;
@@ -17,7 +18,7 @@ const Home: React.FC = () => {
   const [isResponse, setIsResponse] = useState<boolean>(false);
   const messagesEndRef = useRef(null)
 
-  function startQuestions() : void {
+  async function startQuestions() {
     clearTimeout()
     const currQ : string = dummyQuestions[0].question
     const currOptions :string[] = dummyQuestions[0].response
@@ -32,7 +33,9 @@ const Home: React.FC = () => {
     setIsResponse(false);
     setResNum(0);
     setQNum(1);
-    api()
+    const response = await fetchRecipes()
+    console.log(response)
+    
   }
 
   function addQuestion (): void {
@@ -66,14 +69,7 @@ const Home: React.FC = () => {
       setResNum(resNum + 1);
     }
   }
-
-  async function api() {
-    console.log(process.env.SPOONACULAR_API_KEY)
-    const response = await fetch(`https://api.spoonacular.com/recipes/716429/information?apiKey=${process.env.SPOONACULAR_API_KEY}`)
-    await console.log(response, response.body)
-    // return response
-  }
-
+  
   function scrollToBottom() {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
   }
