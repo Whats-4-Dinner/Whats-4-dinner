@@ -89,6 +89,17 @@ a {
   padding: 5px 0px;
 }
 
+.flex-user {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.flex-bot {
+  display: flex;
+  align-items: center;
+}
+
 /* All figures with className which starts with avatar */
 figure, div[class ^= "avatar"]{
   border-radius: 30px;
@@ -103,6 +114,8 @@ figure, div[class ^= "avatar"]{
 
 .avatar-user {
   background-color: var(--blue);
+  order:2;
+  align-self: flex-end;
 }
 
 .messages {
@@ -113,9 +126,16 @@ figure, div[class ^= "avatar"]{
   opacity: 0.9;
 }
 
-.message {
+.message-bot {
   padding: 6px 10px 7px;
   border-radius: 10px 10px 10px 0;
+  background: var(--gray);
+  line-height: 1.4;
+}
+
+.message-user {
+  padding: 6px 10px 7px;
+  border-radius: 10px 10px 0 10px;
   background: var(--gray);
   line-height: 1.4;
 }
