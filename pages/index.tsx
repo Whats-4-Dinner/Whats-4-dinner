@@ -93,8 +93,11 @@ const Home: React.FC = () => {
         <div className='chat'>
           <div className="flex chat-title">
             <div className="avatar"/>
+
             <p>Bot</p>
+            <figure className="avatar"></figure>
           </div>
+
 
           <div className='messages'>
             {display.map(message => (
@@ -104,7 +107,6 @@ const Home: React.FC = () => {
               </div>
               ))}
           </div>
-
           {qNum === 0 || qNum > resNum ? (
             <div className="message-options">
               {options.map((choice) => (
