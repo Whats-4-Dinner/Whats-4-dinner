@@ -16,6 +16,7 @@ const Home: React.FC = () => {
   const [display, setDisplay] = useState<Display[]>([]);
   const [options, setOptions] = useState<string[]>([]);
   const [isResponse, setIsResponse] = useState<boolean>(false);
+  const [recipes, setRecipes] = useState({})
   const messagesEndRef = useRef(null)
 
   async function startQuestions() {
@@ -34,8 +35,7 @@ const Home: React.FC = () => {
     setResNum(0);
     setQNum(1);
     const response = await fetchRecipes()
-    console.log(response)
-    
+    setRecipes(response)
   }
 
   function addQuestion (): void {
