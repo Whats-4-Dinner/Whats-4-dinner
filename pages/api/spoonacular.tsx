@@ -13,12 +13,8 @@ require('../../secrets');
 //   }
 // }
 
-const dummy = {
-  'type': 'breakfast', 
-  "diet" : "Vegetarian"
-}
 
-export async function fetchRecipes(obj=dummy) {
+export async function fetchRecipes(obj) {
   try {
     let propertyStr = objToStr(obj)
     console.log(propertyStr)
@@ -36,7 +32,7 @@ export async function fetchRecipes(obj=dummy) {
 function objToStr(obj) {
   let finalStr = ""
   for (let key in obj) {
-    finalStr += key + '=' + obj[key] + '&'
+    if (obj[key]!=='none') finalStr += key + '=' + obj[key] + '&'
   }
   return finalStr
 }
