@@ -1,0 +1,56 @@
+[
+  {
+    "queryProperty": "type",
+    "question": "What meal type are you looking for?",
+    "response": ["breakfast", "lunch/dinner", "dessert", "other"],
+    "other": {
+      "question": "if other",
+      "response": ["snack", "soup", "bread", "salad", "drink"]
+    }
+  },
+  {
+    "queryProperty": "maxReadyTime",
+    "question": "maxReadyTime?",
+    "response": ["15", "30", "60", "limitless"]
+  },
+  {
+    "queryProperty": "cuisine",
+    "question": "what type of cuisine?",
+    "response": ["american", "european", "asian", "south american", "other"],
+    "american": {
+      "question": "what type of american",
+      "response": ["american", "Southern", "Cajun"]
+    },
+    "european": {
+      "question": "european",
+      "response": ["british", "italian", "french", "german", "greek"]
+    },
+    "asian": {
+      "question": "asian",
+      "response": ["chinese", "korean", "japanese", "thai", "viet", "indian"]
+    },
+    "south american": {
+      "question": "south american",
+      "response": ["mexican", "Latin American", "Caribbean"]
+    },
+    "other": {
+      "question": "other",
+      "response": ["Jewish", "African", "Mediterranean"]
+    }
+  },
+  {
+    "queryProperty": "intolerances",
+    "question": "intolerances",
+    "response": ["peanut", "gulten", "dairy", "seafood", "soy"]
+  },
+  {
+    "queryProperty": "diet",
+    "question": "diet",
+    "response": ["Vegetarian", "Vegan", "Ketogenic", "Pescetarian"]
+  },
+  {
+    "queryProperty": "maxCalories",
+    "question": "maxCalories",
+    "response": ["200", "500", "limitless"]
+  }
+]
