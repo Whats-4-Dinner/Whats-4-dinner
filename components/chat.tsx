@@ -20,9 +20,10 @@ const Chat: React.FC = () => {
   const [isAltQuestion, setIsAltQuestion] = useState<boolean>(false);
 
   const [recipes, setRecipes] = useState({});
+  const [queryInfo, setQueryInfo] = useState({})
   const messagesEndRef = useRef(null);
 
-  async function startQuestions() {
+  function startQuestions() {
     clearTimeout();
     const currQ: string = questions[0].question;
     const currOptions: string[] = questions[0].response;
@@ -37,8 +38,6 @@ const Chat: React.FC = () => {
     setIsResponse(false);
     setResNum(0);
     setQNum(1);
-    // const response = await fetchRecipes();
-    // setRecipes(response);
   }
 
   function addQuestion(): void {
@@ -77,13 +76,15 @@ const Chat: React.FC = () => {
     }
   }
 
-  function addResponse(evt): void {
+  async function addResponse(evt) {
     const response: string = evt.target.value;
 
     const lastResponse = display[display.length -2 ]? display[display.length - 2].text : ''
+    const lastQuestion = questions[qNum - 1]
+    const lastQuestionPropertyType = lastQuestion.queryProperty
     
     //if previous question was nested 
-    if(questions[qNum - 1][lastResponse]){
+    if(lastQuestion[lastResponse]){
       const userResponse: Display = {
         text: response,
         id: resNum + 100,
@@ -91,6 +92,7 @@ const Chat: React.FC = () => {
       };
       setDisplay([...display, userResponse]);
       setIsResponse(true);
+      setQueryInfo({...queryInfo, [lastQuestionPropertyType]: response})
       //else increment resNum 
     } else if (qNum > resNum || isAltQuestion) {
       const userResponse: Display = {
@@ -101,7 +103,15 @@ const Chat: React.FC = () => {
       setDisplay([...display, userResponse]);
       setIsResponse(true);
       setResNum(resNum + 1);
+      setQueryInfo({...queryInfo, [lastQuestionPropertyType]: response})
       setIsAltQuestion(false)
+    }
+
+    //make query on last response
+    if(qNum===questions.length) {
+      const res = await fetchRecipes(queryInfo)
+      console.log({res})
+      setRecipes(res)
     }
   }
 
